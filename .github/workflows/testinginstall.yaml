@@ -1,0 +1,29 @@
+trigger:
+- none
+
+pool:
+  vmImage: windows-latest
+
+variables:
+ PipelineId: '2561'
+
+stages:
+  - stage: Download
+    displayName: Downloading Prerequisites
+    jobs:
+      - job: Installers
+        displayName: Installers
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: Downloading Installers
+            inputs:
+              buildType: 'specific'
+              project: 'ebdd9fdc-c02d-4f93-b460-802582cb13a4'
+              definition: '2561'
+              buildVersionToDownload: 'latest'
+              artifactName: 'Installers'
+              targetPath: $(Pipeline.Workspace)/Download
+
+    
+
+     
